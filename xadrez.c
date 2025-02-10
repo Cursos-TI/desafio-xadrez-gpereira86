@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 // Desafio de Xadrez - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
@@ -56,6 +57,107 @@ int main() {
     // Nível Aventureiro - Movimentação do Cavalo
     // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
     // Um loop pode representar a movimentação horizontal e outro vertical.
+
+    int movimento_maior, movimento_menor;
+    char movimento_maior_direcao, movimento_menor_direcao;
+    char movimento_maior_usavel[10],movimento_menor_usavel[10];
+
+    int erro = 0, j = 1;
+
+    movimento_maior = 3;
+    movimento_menor = 1;
+
+    if((movimento_maior + movimento_menor) > 4)
+    {
+        printf("\n-------------- ERRO -------------\n");
+        printf("O número máximo de movimentação permitido somando toda as direções é 4.\n");
+
+    } else if (movimento_maior < movimento_menor)
+    {
+        printf("\n-------------- ERRO -------------\n");
+        printf("Movimento não atende ao requisto de movimentação.\n");
+    } else{
+
+        /**
+         * legenda:
+         * Cima = C
+         * Baixo = B
+         * Direita = D
+         * Esquerda = E
+         */ 
+        movimento_maior_direcao = 'C';
+        movimento_menor_direcao = 'D';
+
+
+        switch (movimento_maior_direcao)
+            {
+            case 'C':
+                strcpy(movimento_maior_usavel, "Cima");
+                break;
+            case 'B':
+                strcpy(movimento_maior_usavel, "Baixo");
+                break;
+            case 'D':
+                strcpy(movimento_maior_usavel, "Direita");
+                break;
+            case 'E':
+                strcpy(movimento_maior_usavel, "Esquerda");
+                break;
+            default:
+                printf("\n-------------- ERRO -------------\n");
+                printf("Direção escolhida desconhecida\n");
+                erro = 1;
+                break;
+            }
+        
+        switch (movimento_menor_direcao)
+            {
+            case 'C':
+                strcpy(movimento_menor_usavel, "Cima");
+                break;
+            case 'B':
+                strcpy(movimento_menor_usavel, "Baixo");
+                break;
+            case 'D':
+                strcpy(movimento_menor_usavel, "Direita");
+                break;
+            case 'E':
+                strcpy(movimento_menor_usavel, "Esquerda");
+                break;
+            default:
+                printf("\n-------------- ERRO -------------\n");
+                printf("Direção escolhida desconhecida.\n");
+                erro = 1;
+                break;
+            }
+        
+        if (!erro)
+        {
+            printf("\n----CAVALO SE MOVIMENTA PARA:----\n");
+
+            for (int i = 1; i <= movimento_menor; i++)
+            {
+                while (j <= movimento_maior) 
+                {
+                    printf("%s\n", movimento_maior_usavel);    
+                    j++;                                        
+                }
+            
+                j = movimento_maior + 1;
+                printf("%s\n", movimento_menor_usavel);   
+                
+            }
+            
+        } else{
+            printf("Jogo finalizado.");
+        }
+
+
+    }
+    
+
+    
+    
 
     // Nível Mestre - Funções Recursivas e Loops Aninhados
     // Sugestão: Substitua as movimentações das peças por funções recursivas.
